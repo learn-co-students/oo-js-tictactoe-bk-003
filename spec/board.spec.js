@@ -12,13 +12,13 @@ describe('board', function() {
   });
 
   // the specs with xdescribe are suggested but not required functions
-  xdescribe( "#createRowArray", function() {
+  describe( "#createRowArray", function() {
     it("should do return an array of size x filled the element passed to it", function() {
       expect(board.createRowArray(3, "<tr>")).toEqual(["<tr>", "<tr>", "<tr>"]);
     });     
   });
 
-  xdescribe( "#createColumnArray", function() {
+  describe( "#createColumnArray", function() {
     it("should do return an array of size x filled the element passed to it", function() {
       expect(board.createColumnArray(3, "<td></td>")).toEqual(["<td></td>", "<td></td>", "<td></td>"]);
     });     
