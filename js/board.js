@@ -1,11 +1,11 @@
 function Board() {}
 
 Board.prototype.init = function() {
-  // code here
+	this.buildBoard();
 }
 
 Board.prototype.buildBoard = function() {
-    // code here
+    $('body').append('<table border="1" cellpadding="40"><tr><td data-x="0" data-y="0"></td><td data-x="1" data-y="0"></td><td data-x="2" data-y="0"></td></tr><tr><td data-x="0" data-y="1"></td><td data-x="1" data-y="1"></td><td data-x="2" data-y="1"></td></tr><tr><td data-x="0" data-y="2"></td><td data-x="1" data-y="2"></td><td data-x="2" data-y="2"></td></tr></table><div id="message"></div>');
 }
 
 Board.prototype.createRowArray = function(size, element) {
@@ -21,13 +21,17 @@ Board.prototype.createArray = function(size, element) {
 }
 
 Board.prototype.addIds = function() {
-  // code here
+  $('td').each(function(index, thing) {
+  	thing.id = index;
+  });
 }
 
 Board.prototype.updateCell = function(id, mark) {
-  // code here
+  $('#'+id).html(mark);
 }
 
 Board.prototype.addEvents = function(game) {
-  // code here
+	$('td').click(function(event){
+		game.doTurn(event.target.id);
+	});
 }

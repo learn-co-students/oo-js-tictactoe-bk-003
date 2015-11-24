@@ -1,7 +1,8 @@
 function Game() {}
 
 Game.prototype.init = function (board) {
-  // code here
+	this.board = board;
+	this.turn = 0;
 }
 
 Game.prototype.checkCells = function(ary) {
@@ -9,15 +10,23 @@ Game.prototype.checkCells = function(ary) {
 }
 
 Game.prototype.checkWinner = function() {
-  // code here
+	if (this.state) {
+		
+	}
 }
 
 Game.prototype.player = function() {
-  // code here
+	if (this.turn % 2 == 0) {
+		return "X";
+	} else {
+		return "O";
+	}
 }
 
 Game.prototype.doTurn = function(id){
-  // code here
+  this.updateState(id);
+  this.checkWinner();
+  this.turn += 1;
 }
 
 Game.prototype.message = function (message) {
@@ -25,9 +34,14 @@ Game.prototype.message = function (message) {
 }
 
 Game.prototype.updateState = function(id) {
-  // code here
+	if (!this.state) {
+		this.createState();
+	}
+	this.state[id] = this.player();
+	this.board.updateCell(id, this.player());
+
 }
 
 Game.prototype.createState = function() {
-  // code here
+  this.state = [,,,,,,,,,];
 }
