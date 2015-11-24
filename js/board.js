@@ -1,19 +1,26 @@
 function Board() {}
 
 Board.prototype.init = function() {
-  // code here
+	this.buildBoard();
 }
 
 Board.prototype.buildBoard = function() {
-    // code here
+    this.createRowArray(9,'td').forEach(function(el){
+    	$("body").append(document.createElement(el));
+    });
 }
 
 Board.prototype.createRowArray = function(size, element) {
-  // code here
+  var list = [];
+  while (size--) {
+  	list.push(element);
+  	// document.createElement(element)
+  }
+  return list;
 }
 
 Board.prototype.createColumnArray = function(size, element) {
-  // code here
+	return this.createRowArray(size,element);
 }
 
 Board.prototype.createArray = function(size, element) {
@@ -21,13 +28,15 @@ Board.prototype.createArray = function(size, element) {
 }
 
 Board.prototype.addIds = function() {
-  // code here
+  $('td').each(function(a,b){
+  	$(this).attr('id',a);
+  });
 }
 
 Board.prototype.updateCell = function(id, mark) {
-  // code here
+  $('td#'+id).text(mark);
 }
 
 Board.prototype.addEvents = function(game) {
-  // code here
+  $('td').click(function(){});
 }

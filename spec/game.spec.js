@@ -45,6 +45,7 @@ describe('game', function() {
     it("should tell me if there is a winning combo on the board for the current player", function() {
       game.init(board);
       spyOn(board, "updateCell")
+
       game.doTurn(0)
       game.doTurn(1)
       game.doTurn(2)
