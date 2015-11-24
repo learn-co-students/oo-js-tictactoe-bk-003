@@ -14,7 +14,7 @@ Game.prototype.checkCells = function(ary) {
   // code here
   var count = 0
   for(var i=0;i<3;i++){
-  	ary[i] == this.player() ? count++ : '';
+  	this.state[ary[i]] == this.player() ? count++ : '';
   }
   return count==3 ? 1 : 0
 }
@@ -22,21 +22,9 @@ Game.prototype.checkCells = function(ary) {
 Game.prototype.checkWinner = function() {
   // code here
   var verdict = 0;
-  for(n=0;n<8;n++) {
-  	if (n % 3==0) {
-  		verdict = verdict + this.checkCells(this.state.slice(n,n+2))
-  	}
-  	if (n < 3) {
-  		verdict = verdict + this.checkCells([this.state[n],this.state[n+3],this.state[n+6]])
-  	}
-  	if(n == 0) {
-  		verdict = verdict + this.checkCells([this.state[0], this.state[4], this.state[8]])
-  		verdict = verdict + this.checkCells([this.state[2], this.state[4], this.state[6]])
-  	}
-  }
-  if (verdict > 0) {
-  	this.message('Player '+ this.player()+ ' Won!')
-  }
+  [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]].forEach(function(ary){
+  	verdict = verdict + this.checkCells(ary)
+  }, this)
   return verdict > 0
 }
 
@@ -48,7 +36,9 @@ Game.prototype.player = function() {
 Game.prototype.doTurn = function(id){
   // code here
   this.updateState(id)
-  this.checkWinner()
+  if (this.checkWinner()) {
+  	this.message('Player '+ this.player()+ ' Won!')
+  }
   this.turn++
 }
 
