@@ -20,6 +20,7 @@ describe('game', function() {
   describe( "#createState", function() {
     it("should create an array of 9 empty values", function() {
       game.createState()
+      // debugger
       expect(game.state.length).toEqual(9);
     });     
   });
@@ -64,6 +65,7 @@ describe('game', function() {
       game.doTurn(4);
       game.doTurn(5);
       game.doTurn(6);
+      debugger
       expect(game.message).toHaveBeenCalledWith("Player X Won!")
     });     
   });
